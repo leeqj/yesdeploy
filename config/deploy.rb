@@ -70,5 +70,6 @@ namespace :deploy do
   	end
   end
 	# after :fi, :cmdupdate
+  after :finishing, :restart
 end
 after  "deploy", "deploy:cmdupdate"
