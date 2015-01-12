@@ -37,7 +37,7 @@ set :repo_url, 'http://svn.leho.com/svn/yes_bbc/trunk/'
 namespace :deploy do
 
   after :restart, :clear_cache do
-    on roles(:web :app), in: :groups, limit: 3, wait: 3 do
+    on roles(:all), in: :groups, limit: 3, wait: 3 do
       # Here we can do anything such as:
        within release_path do
          execute :rake, 'cache:clear'

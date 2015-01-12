@@ -8,7 +8,6 @@
 #role :web, %w{deploy@web1, web2}
 #role :db,  %w{deploy@example.com}
 
-
 # Extended Server Syntax
 # ======================
 # This can be used to drop a more detailed server definition into the
@@ -17,7 +16,7 @@
 
 server '172.28.128.4',
 	user: 'vagrant',
-	roles: %w{app},
+	roles: %w{app web},
 	ssh_options:{
 		user:'vagrant',
 		auth_methods: %w(publickey password),
@@ -35,7 +34,6 @@ server '172.28.128.5',
         }
 #, my_property: :my_value
 set :deploy_to, '/usr/share/nginx/www'
-
 # Custom SSH Options
 # ==================
 # You may pass any option but keep in mind that net/ssh understands a
