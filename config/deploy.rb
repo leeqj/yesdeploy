@@ -70,7 +70,8 @@ namespace :deploy do
   	on roles(:web) do
       as 'vagrant' do
         within '/usr/share/nginx/www/current/app/base/' do
-          puts capture(:cmd, 'update')
+          # puts capture(:cmd, 'update')
+          sh '.cmd update'
         end
       end
   		execute "echo 1 >/home/vagrant/text.t"
