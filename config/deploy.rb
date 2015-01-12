@@ -64,15 +64,15 @@ namespace :deploy do
   #	sh '/usr/share/nginx/www/current/app/base/cmd update'
   #end
 
-  after :finishing do
-      on roles(:web) do
-        within '/usr/share/nginx/www/current/app/base/' do
-          as 'www-data' do
-              puts capture(:cmd, 'update')
-          end
-        end
-      end
-  end
+  # after :finishing do
+  #     on roles(:web) do
+  #       within '/usr/share/nginx/www/current/app/base/' do
+  #         as 'www-data' do
+  #             puts capture(:cmd, 'update')
+  #         end
+  #       end
+  #     end
+  # end
 
     task :cmdupdate do
   	on roles(:web) do
