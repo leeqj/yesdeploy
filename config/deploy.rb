@@ -49,9 +49,8 @@ namespace :deploy do
     #["config/database.yml", "config/config.yml"].each do |path|
       #run "ln -fs #{shared_path}/#{path} #{release_path}/#{path}"
     #end
-	on roles(:web) do
+	  on roles(:web) do
 	    execute "echo 'finish will exe update common' > ~/tttt.txt"
-#	    execute "/usr/share/nginx/www/current/app/base/cmd update > ~/update.txt"
   	end
   end
 	#task :updatecmd do
@@ -59,25 +58,16 @@ namespace :deploy do
 	#	sh '/usr/share/nginx/www/current/app/base/cmd update'
 	#end
 
-  #after :finishing do
-	#invoke "deploy:updatecmd"
-  #	sh '/usr/share/nginx/www/current/app/base/cmd update'
-  #end
-
-
-
   task :cmdupdate do
   	on roles(:web) do
       # as 'vagrant' do
         within '/usr/share/nginx/www/current/app/base/' do
           puts capture(:php, 'cmd','update')
-          # sh '.cmd update'
         end
       # end
-  		execute "echo 1 >/home/vagrant/text.t"
+  		# execute "echo 1 >/home/vagrant/text.t"
   	end
   end
-	#after :finishing, :cmdupdate
-	#after  "deploy","deploy:updatecmd"
+	after :finishing, :cmdupdate
 end
-after  "deploy", "deploy:cmdupdate"
+# after  "deploy", "deploy:cmdupdate"
