@@ -45,7 +45,7 @@ namespace :deploy do
     end
   end
 
-  after :finish do
+  # after :finish do
       # on roles(:web) do
         # within '/usr/share/nginx/www/current/app/base/' do
         #   as 'vagrant' do
@@ -53,7 +53,7 @@ namespace :deploy do
         #   end
         # end
       # end
-  end
+  # end
 
   task :updatecmd  do
     #["config/database.yml", "config/config.yml"].each do |path|
