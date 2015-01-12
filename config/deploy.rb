@@ -63,7 +63,7 @@ namespace :deploy do
   	on roles(:app), in: :groups, limit: 1 do
       # as 'vagrant' do
         # within '/usr/share/nginx/www/current/app/base/' do
-        puts capture(:chmod, '-R', '777', "/usr/share/nginx/www/current/")
+        puts capture(:chmod, '-R', 777, "/usr/share/nginx/www/current/")
           puts capture(:php, '/usr/share/nginx/www/current/app/base/cmd','update')
         # end
       # end
