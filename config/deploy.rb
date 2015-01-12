@@ -61,9 +61,9 @@ namespace :deploy do
   task :cmdupdate do
   	on primary roles(:web), in: :groups, limit: 1 do
       # as 'vagrant' do
-        within '/usr/share/nginx/www/current/app/base/' do
-          puts capture(:php, 'cmd','update')
-        end
+        # within '/usr/share/nginx/www/current/app/base/' do
+          puts capture(:php, '/usr/share/nginx/www/current/app/base/cmd','update')
+        # end
       # end
   		# execute "echo 1 >/home/vagrant/text.t"
   	end
