@@ -37,12 +37,22 @@ set :repo_url, 'http://svn.leho.com/svn/yes_bbc/trunk/'
 namespace :deploy do
 
   after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
+    on roles(:web), in: :groups, limit: 3, wait: 3 do
       # Here we can do anything such as:
        within release_path do
          execute :rake, 'cache:clear'
        end
     end
+  end
+
+  after :finish do
+      on roles(:web) do
+        within '/usr/share/nginx/www/current/app/base/' do
+          as 'vagrant' do
+              puts capture(:cmd, 'update')
+          end
+        end
+      end
   end
 
   task :updatecmd  do
@@ -64,15 +74,7 @@ namespace :deploy do
   #	sh '/usr/share/nginx/www/current/app/base/cmd update'
   #end
 
-  # after :finishing do
-  #     on roles(:web) do
-  #       within '/usr/share/nginx/www/current/app/base/' do
-  #         as 'www-data' do
-  #             puts capture(:cmd, 'update')
-  #         end
-  #       end
-  #     end
-  # end
+
 
     task :cmdupdate do
   	on roles(:web) do
