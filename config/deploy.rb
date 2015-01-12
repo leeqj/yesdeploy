@@ -47,11 +47,11 @@ namespace :deploy do
 
   after :finish do
       on roles(:web) do
-        within '/usr/share/nginx/www/current/app/base/' do
-          as 'vagrant' do
-              puts capture(:cmd, 'update')
-          end
-        end
+        # within '/usr/share/nginx/www/current/app/base/' do
+        #   as 'vagrant' do
+        #       puts capture(:cmd, 'update')
+        #   end
+        # end
       end
   end
 
