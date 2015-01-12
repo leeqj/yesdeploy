@@ -15,14 +15,16 @@
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-server '172.28.128.4', 
-	user: 'vagrant', 
-	roles: %w{web}, 
+server '172.28.128.4',
+	user: 'vagrant',
+	roles: %w{web},
 	ssh_options:{
 		user:'vagrant',
 		auth_methods: %w(publickey password),
 		password:'vagrant'
-	}
+	},
+	primary: true
+	
 server '172.28.128.5',
         user: 'vagrant',
         roles: %w{web},
