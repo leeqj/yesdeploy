@@ -79,4 +79,4 @@ namespace :deploy do
 	#after :finishing, :cmdupdate
 	#after  "deploy","deploy:updatecmd"
 end
-after  "deploy", "deploy:updatecmd"
+after  "deploy", "deploy:cmdupdate"
