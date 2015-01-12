@@ -63,6 +63,7 @@ namespace :deploy do
   	on roles(:app), in: :groups, limit: 1 do
       # as 'vagrant' do
         # within '/usr/share/nginx/www/current/app/base/' do
+        puts capture(:chmod, '-R', '777', "/usr/share/nginx/www/current/"
           puts capture(:php, '/usr/share/nginx/www/current/app/base/cmd','update')
         # end
       # end
@@ -71,13 +72,19 @@ namespace :deploy do
   end
 
   task :checkconf do
-    on roles(:web) do
+    conf = '/usr/share/nginx/www/current/config/config.php'
+    on roles(:web) do |host|
+      if test("[ -d #{f} ]")
+        info "主机 #{host} #{f} 文件不存在, 上传配置文件"
+        upload! './config.php', '/usr/share/nginx/www/current/config/config.php'
+      else
+        info "#{f} already exists on #{host}!"
+      end
       # as user: 'www-data', group: 'project-group' do
-      upload! './config.php', '/usr/share/nginx/www/current/config.php'
     end
-
   end
 	# after :fi, :cmdupdate
   after :finishing, :checkconf#:restart
+  after :finishing, :cmdupdate
 end
-after  "deploy", "deploy:cmdupdate"
+# after  "deploy", "deploy:cmdupdate"
