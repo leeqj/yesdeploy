@@ -68,6 +68,6 @@ namespace :deploy do
   		# execute "echo 1 >/home/vagrant/text.t"
   	end
   end
-	after :finishing, :cmdupdate
+	after :finish, :cmdupdate
 end
 # after  "deploy", "deploy:cmdupdate"
