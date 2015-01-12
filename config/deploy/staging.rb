@@ -17,13 +17,13 @@
 
 server '172.28.128.4',
 	user: 'vagrant',
-	roles: %w{web},
+	roles: %w{app},
 	ssh_options:{
 		user:'vagrant',
 		auth_methods: %w(publickey password),
 		password:'vagrant'
 	},
-	primary: true 
+	primary: true
 
 server '172.28.128.5',
         user: 'vagrant',
