@@ -73,7 +73,7 @@ namespace :deploy do
   task :checkconf do
     on roles(:web) do
       # as user: 'www-data', group: 'project-group' do
-      upload! '/config/database.yml', '/usr/share/nginx/www/current/config.php'
+      upload! './config.php', '/usr/share/nginx/www/current/config.php'
     end
 
   end
