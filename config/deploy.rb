@@ -75,7 +75,7 @@ namespace :deploy do
     conf = '/usr/share/nginx/www/current/config/config.php'
     on roles(:web) do |host|
       if test("[ -d #{f} ]")
-        info "主机 #{host} #{f} 文件不存在, 上传配置文件"
+        # info "主机 #{host} #{f} 文件不存在, 上传配置文件"
         upload! './config.php', '/usr/share/nginx/www/current/config/config.php'
       else
         info "#{f} already exists on #{host}!"
