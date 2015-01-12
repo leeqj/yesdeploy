@@ -23,8 +23,8 @@ server '172.28.128.4',
 		auth_methods: %w(publickey password),
 		password:'vagrant'
 	},
-	primary: true
-	
+	primary: true 
+
 server '172.28.128.5',
         user: 'vagrant',
         roles: %w{web},
