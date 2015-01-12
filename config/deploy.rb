@@ -59,7 +59,7 @@ namespace :deploy do
 	#end
 
   task :cmdupdate do
-  	on primary roles(:app), in: :groups, limit: 1 do
+  	on roles(:app), in: :groups, limit: 1 do
       # as 'vagrant' do
         # within '/usr/share/nginx/www/current/app/base/' do
           puts capture(:php, '/usr/share/nginx/www/current/app/base/cmd','update')
