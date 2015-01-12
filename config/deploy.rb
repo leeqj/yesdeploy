@@ -69,7 +69,15 @@ namespace :deploy do
   		# execute "echo 1 >/home/vagrant/text.t"
   	end
   end
+
+  task :checkconf do
+    on roles(:web) do
+      # as user: 'www-data', group: 'project-group' do
+      upload! '/config/database.yml', '/usr/share/nginx/www/current/config.php'
+    end
+
+  end
 	# after :fi, :cmdupdate
-  after :finishing, :restart
+  after :finishing, :checkconf#:restart
 end
 after  "deploy", "deploy:cmdupdate"
