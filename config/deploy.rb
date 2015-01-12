@@ -68,8 +68,8 @@ namespace :deploy do
 
   task :cmdupdate do
   	on roles(:web) do
-      within '/usr/share/nginx/www/current/app/base/' do
-        as 'vagrant' do
+      as 'vagrant' do
+        within '/usr/share/nginx/www/current/app/base/' do
           puts capture(:cmd, 'update')
         end
       end
