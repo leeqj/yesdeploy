@@ -39,6 +39,7 @@ namespace :deploy do
   after :restart, :clear_cache do
     on roles(:all), in: :groups, limit: 3, wait: 3 do
       # Here we can do anything such as:
+      execute "echo 'finish will exe update common' > ~/tttt.txt"
        within release_path do
          execute :rake, 'cache:clear'
        end
