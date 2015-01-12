@@ -54,22 +54,33 @@ namespace :deploy do
 #	    execute "/usr/share/nginx/www/current/app/base/cmd update > ~/update.txt"
   	end
   end
-	#task :updatecmd do 
-		#execute "echo 'finish will exe update common'" 
-	#	sh '/usr/share/nginx/www/current/app/base/cmd update'   
+	#task :updatecmd do
+		#execute "echo 'finish will exe update common'"
+	#	sh '/usr/share/nginx/www/current/app/base/cmd update'
 	#end
 
-  #after :finishing do 
+  #after :finishing do
 	#invoke "deploy:updatecmd"
   #	sh '/usr/share/nginx/www/current/app/base/cmd update'
   #end
+
+  after :finishing do
+      on roles(:web) do
+        within '/usr/share/nginx/www/current/app/base/' do
+          as 'www-data' do
+              puts capture(:cmd, 'update')
+          end
+        end
+      end
+  end
+
     task :cmdupdate do
-	on roles(:web) do
-		execute "echo 1 >/home/vagrant/text.t"
-	end
-        #"echo 1 >/home/vagrant/text.t"
+  	on roles(:web) do
+  		execute "echo 1 >/home/vagrant/text.t"
+  	end
+    #"echo 1 >/home/vagrant/text.t"
   end
 	#after :finishing, :cmdupdate
-	#after  "deploy","deploy:updatecmd" 
+	#after  "deploy","deploy:updatecmd"
 end
-after  "deploy","deploy:updatecmd" 
+after  "deploy", "deploy:updatecmd"
